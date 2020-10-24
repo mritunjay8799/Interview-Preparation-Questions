@@ -24,8 +24,8 @@ int main()
   for(int i = 0; i<e; i++)
   {
     cin>>a>>b;
-    adj[a],push_back(b);
-    adj[b],push_back(a);
+    adj[a].push_back(b);
+    adj[b].push_back(a);
   }
   printGraph(adj,n);
 }
