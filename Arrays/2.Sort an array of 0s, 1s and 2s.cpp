@@ -22,9 +22,60 @@ Output:
 
 ===================================================================================================================================================================================
 
-#include <bits/stdc++.h>
-using namespace std;
+Method 1 : Sort the array using sort method or any Sorting alogorithm.
+==========
+	
+Method 2 : Count the number of 0s, 1s and 2s and re-traverse the array and put 0's first, then 1's and then 2's
+==========
+	
+void sortArr(int arr[], int n) 
+{ 
+    int i, cnt0 = 0, cnt1 = 0, cnt2 = 0; 
+  
+    // Count the number of 0s, 1s and 2s in the array 
+    for (i = 0; i < n; i++) { 
+        switch (arr[i]) { 
+        case 0: 
+            cnt0++; 
+            break; 
+        case 1: 
+            cnt1++; 
+            break; 
+        case 2: 
+            cnt2++; 
+            break; 
+        } 
+    } 
+  
+    // Update the array 
+    i = 0; 
+  
+    // Store all the 0s in the beginning 
+    while (cnt0 > 0) { 
+        arr[i++] = 0; 
+        cnt0--; 
+    } 
+  
+    // Then all the 1s 
+    while (cnt1 > 0) { 
+        arr[i++] = 1; 
+        cnt1--; 
+    } 
+  
+    // Finally all the 2s 
+    while (cnt2 > 0) { 
+        arr[i++] = 2; 
+        cnt2--; 
+    } 
 
+    printArr(arr, n); 
+} 
+	
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Method 3: 
+=========
+	
 void solve(int arr[], int n)
 {
     int low = 0, mid =0, high = n-1;
@@ -44,20 +95,3 @@ void solve(int arr[], int n)
         cout<<arr[i]<<" ";
 }
 
-int main() {
-	int t;
-	cin>>t;
-	while(t--)
-	{
-	    int n;
-	    cin>>n;
-	    int arr[n];
-	    for(int i = 0; i<n; i++)
-	    {
-	        cin>>arr[i];
-	    }
-	    solve(arr,n);
-	    cout<<endl;
-	}
-	return 0;
-}
