@@ -21,6 +21,12 @@ Constraints:
 1 ≤ Arr[i] ≤ N
 
 ==================================================================================================================================================================================
+NAIVE METHOD -  SORT ARRAY AND USE TWO POINTER TO FIND "REPEATING" AND THEN "MISSING"  /* "OR" */ USE "COUNT ARRAY TO FIND "REPEATING".
+--------------
+
+METHOD -1 : (Use elements as Index and mark the visited places)
+---------------------------------------------------------------
+
 class Solution{
 public:
     int *findTwoElement(int *arr, int n) {
@@ -41,3 +47,29 @@ public:
     }
 };
 ================================================================================================================================================================================
+    
+METHOD - 2 : USING HASHMAP
+---------------------------
+    
+    class Solution{
+public:
+    int *findTwoElement(int *arr, int n) {
+        int *a = new int[2];
+        map<int,int>mp;
+        for(int i = 0;i<n;i++)
+        {
+            if(mp[arr[i]]==1)
+                a[0] = arr[i];
+            else
+                mp[arr[i]]++;
+        }
+        for(int i = 1;i<=n;i++)
+        {
+            if(mp.find(i)==mp.end())
+                a[1] = i;
+        }
+        return a;
+    }
+};
+   
+ 
