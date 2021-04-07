@@ -1,3 +1,20 @@
+"SOLUTION" - TRAVERSE THE TREE IN LEVEL ORDER AND FOR "LEFT VIEW" THE "FIRST ELEMENT OF EACH LEVEL" MAKES LEFT VIEW AND "LAST ELEMENT OF EACH LEVEL" MAKES "RIGHT VIEW"
+    
+ EG : 
+                        4
+                      /   \
+                     5     6
+                   /  \   /  \
+                  7    8 9    10
+                         
+"LEVEL ORDER":   4
+                 5 6
+                 7 8 9 10
+    "LEFT VIEW" - 4 5 7
+    "RIGHT VIEW" - 4 6 10
+
+
+
 RIGHT VIEW-
 -----------
 
@@ -29,9 +46,44 @@ public:
 
 ===================================================================================================================================================================================
 
-LEFT VIEW-
-----------
+LEFT VIEW- "METHOD:1 USING NESTED LOOPS"
+--------------------------------------
+    
+void solve(Node* root, vector<int>&v)
+{
+    if(root==NULL)
+        return;
+   queue<Node*>q;
+   q.push(root);
+   while(!q.empty())
+   {
+       int n = q.size();
+       for(int i =0;i<n;i++)
+       {
+            auto a = q.front();
+            q.pop();
+            if(i==0)
+                v.push_back(a->data);
+        if(a->left)
+            q.push(a->left);
+        if(a->right)
+            q.push(a->right);    
+       }
+   }
+}
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int>v;
+   solve(root,v);
+   return v;
+}
 
+================================================================================================================================================================================
+
+ "METHOD 2 - USING RECURSION"
+ -----------------------------
+    
 class Solution {
 public:
     
